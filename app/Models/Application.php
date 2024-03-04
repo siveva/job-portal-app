@@ -20,5 +20,10 @@ class Application extends Model
     {
         return $this->belongsTo(JobListing::class);
     }
+
+    public function seeker()
+    {
+        return $this->belongsTo(JobSeeker::class,'job_seeker_id','user_id');
+    }
     
 }

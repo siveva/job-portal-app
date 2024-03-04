@@ -33,25 +33,26 @@
         </div>
 
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-condensed table-striped data-table">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Actions</th>
+                        <th>Email</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Phone No.</th>
+                        <th>Address</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($seekers  as $seeker)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $seeker->name }}</td>
-                            <td style="text-align: center;">
-                                <div class="btn-group">
-                                    <a href="" class="btn btn-success btn-sm"><i class="fas fa-eye"></i> {{ __('View') }}</a>
-                                    <button type="button" class="btn btn-danger btn-sm deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $seeker->id }}" data-name="{{ $seeker->name }}"><i class="fas fa-trash"></i> {{ __('Delete') }}</button>
-                                </div>
-                            </td>
+                            <td>{{ $seeker->email }}</td>
+                            <td>{{ $seeker->jobSeeker->first_name }}</td>
+                            <td>{{ $seeker->jobSeeker->last_name }}</td>
+                            <td>{{ $seeker->jobSeeker->phone_number }}</td>
+                            <td>{{ $seeker->jobSeeker->address }}</td>
                         </tr>
                     @empty
                         <tr>
@@ -92,19 +93,14 @@
             </div>
         </div>
 
-
-        <script>
-            // Handle delete button click
-            $('.deleteBtn').on('click', function() {
-                // console.log('dal');
-                var seekerId = $(this).data('id');
-                var seekerName = $(this).data('name');
-                $('#deleteForm').attr('action', '/admin/job-seekers/' + seekerId);
-                $('#seekerName').text(seekerName);
-            });
-        </script>
-
-
 @endsection
+@push('pages-script')
+<script>
+            $(document).ready(function () {
+                $('.data-table').DataTable();
+                
+            });
+</script>
+@endpush
 
 

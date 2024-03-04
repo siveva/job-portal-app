@@ -13,7 +13,7 @@
                 <h4 class="text-center">{{ number_format($jobCount) }}</h4>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+            <a class="small text-white stretched-link" href="{{ route('admin.job-listings.index') }}">View Details</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <h4 class="text-center">{{ number_format($employerCount) }}</h4>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+            <a class="small text-white stretched-link" href="{{ route('admin.employers.index') }}">View Details</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 <h4 class="text-center">{{ number_format($seekerCount) }}</h4>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+            <a class="small text-white stretched-link" href="{{ route('admin.job-seekers.index') }}">View Details</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                 <h4 class="text-center">{{ number_format($categoryCount) }}</h4>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+            <a class="small text-white stretched-link" href="{{ route('admin.categories.index') }}">View Details</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>

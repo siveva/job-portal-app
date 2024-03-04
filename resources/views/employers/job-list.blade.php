@@ -32,6 +32,8 @@
                         <th>{{ __('Job Title') }}</th>
                         <th>{{ __('Applications') }}</th>
                         {{-- <th>{{ __('Status') }}</th> --}}
+                        <th>Location</th>
+                        <th>Salary</th>
                         <th>{{ __('Date Posted') }}</th>
                         <th>{{ __('Actions') }}</th>
                     </tr>
@@ -47,7 +49,8 @@
                                     <h5><span class="badge bg-success"><i class="fas fa-eye"></i> Show <span class="badge bg-black">{{ $job->applications_count }}</span></span></h5>
                                 </a>
                             </td>
-                            
+                            <td>{{ $job->location }}</td>
+                            <td style="color: green">{{ number_format($job->salary, 2) }}</td>
                             {{-- <td>{{ $job->status }}</td> --}}
                             <td>{{ $job->created_at->format('Y-m-d') }}</td>
                             <td style="text-align: center;">

@@ -110,6 +110,10 @@ Route::middleware(['auth', 'jobseeker'])->group(function () {
 
 Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/job-listings', [JobListingController::class])->name('admin.job-listings.index');
+    Route::get('/employers', [JobListingController::class])->name('admin.employers.index');
+    Route::get('/job-seekers', [JobListingController::class])->name('admin.job-seekers.index');
+    Route::get('/categories', [JobListingController::class])->name('admin.categories.index');
     Route::put('/user/update/{id}', [AdminController::class, 'updateProfile'])->name('user.admin.update');
     Route::put('/user/pass/update/{id}', [AdminController::class, 'changePassword'])->name('user.admin.changePassword');
 
@@ -160,8 +164,5 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
             'update'=>'admin.job-listings.update',
             'destroy'=>'admin.job-listings.destroy',
         ]);
-    
-
-
 
 });

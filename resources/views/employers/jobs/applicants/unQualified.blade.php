@@ -17,43 +17,98 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered data-table">
+        <table class="table table-condensed table-striped data-table">
                 <thead>
                     <tr>
-                        <th>Application #</th>
-                        <th>Name</th>
+                        <th>ID#</th>
+                        <th>Fullname</th>
+                        <th>Phone</th>
                         <th>Email</th>
+                        <th>Address</th>
+                        <th>Date Applied</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($jobApplications as $jobApplication)
+                    @switch($jobApplication->education)
+                                    @case('0')
+                                        @php $education = "Elementary level or graduate"; @endphp
+                                        @break
+                                    @case('1')
+                                        @php $education = "Secondary level or graduate"; @endphp
+                                        @break
+                                    @case('2')
+                                        @php $education = "Vocational Course Graduate"; @endphp
+                                        @break
+                                    @case('3')
+                                        @php $education = "College level"; @endphp
+                                        @break
+                                    @case('4')
+                                        @php $education = "Graduate of any IT related course"; @endphp
+                                        @break
+                                    @case('5')
+                                        @php $education = "Graduate of any Arts or Sciences related course"; @endphp
+                                        @break
+                                    @case('6')
+                                        @php $education = "Graduate of any Engineering related course"; @endphp
+                                        @break
+                                    @case('7')
+                                        @php $education = "Graduate of any Business related course"; @endphp
+                                        @break
+                                    @case('8')
+                                        @php $education = "Graduate of any Medicine related course"; @endphp
+                                        @break
+                                    @case('9')
+                                        @php $education = "Graduate of any Education related course"; @endphp
+                                        @break                        
+                                @endswitch
+                                @switch($jobApplication->yrOfexp)
+                                    @case('0')
+                                        @php $exp = "None"; @endphp
+                                        @break
+                                    @case('1')
+                                        @php $exp = "1-6 mos"; @endphp
+                                        @break
+                                    @case('2')
+                                        @php $exp = "7-12 mos"; @endphp
+                                        @break
+                                    @case('3')
+                                        @php $exp = "1-2 yrs"; @endphp
+                                        @break
+                                    @case('4')
+                                        @php $exp = "2 yrs and above"; @endphp
+                                        @break    
+                                @endswitch
                         <tr>
                             <td>{{ $jobApplication->id }}</td>
-                            <td>{{ $jobApplication->jobSeeker->name }}</td>
+                            <td>{{ $jobApplication->seeker->last_name. ", ".$jobApplication->seeker->first_name }}</td>
+                            <td>{{ $jobApplication->seeker->phone_number }}</td>
                             <td>{{ $jobApplication->jobSeeker->email }}</td>
+                            <td style="font-size: 11px">{{ $jobApplication->seeker->address }}</td>
+                            <td>{{ date("m-d-Y", strtotime($jobApplication->created_at)) }}</td>
                             <td>
                                 @switch($jobApplication->status)
                                     @case('accepted')
-                                        <span class="badge bg-success">{{ ucfirst($jobApplication->status) }}</span>
+                                        <span class="badge bg-success" style="padding: 9px">{{ ucfirst($jobApplication->status) }}</span>
                                         @break
                                     @case('scheduled_for_interview')
-                                        <span class="badge bg-success">Scheduled for Interview</span>
+                                        <span class="badge bg-success" style="padding: 9px">Scheduled for Interview</span>
                                         @break
                                     @case('rejected')
-                                        <span class="badge bg-danger">{{ ucfirst($jobApplication->status) }}</span>
+                                        <span class="badge bg-danger" style="padding: 9px">{{ ucfirst($jobApplication->status) }}</span>
                                         @break
                                     @case('canceled')
-                                        <span class="badge bg-danger">{{ ucfirst($jobApplication->status) }}</span>
+                                        <span class="badge bg-danger" style="padding: 9px">{{ ucfirst($jobApplication->status) }}</span>
                                         @break
                                     @default
-                                        <span class="badge bg-secondary">{{ ucfirst($jobApplication->status) }}</span>
+                                        <span class="badge bg-secondary" style="padding: 9px">{{ ucfirst($jobApplication->status) }}</span>
                                 @endswitch
                             </td>
                             <td>
-                                    <a href="{{ route('applications.show', $jobApplication->id) }}" class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i> View</a>                                     
-                                    @if($jobApplication->status == "pending")
+                                    <a href="{{ route('applications.show', $jobApplication->id) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i> View</a>                                     
+                                    {{--@if($jobApplication->status == "pending")
                                         <button type="button" class="btn btn-success btn-sm modal-trigger-button" data-bs-toggle="modal" data-bs-target="#popupModalAcceptApplication{{ $jobApplication->id }}"><i class="fas fa-check"></i> Accept</button>
                                         <button type="button" class="btn btn-primary btn-sm modal-trigger-button" data-bs-toggle="modal" data-bs-target="#popupModalScheduleForInterviewApplication{{ $jobApplication->id }}"><i class="fas fa-clock"></i> Schedule for Interview</button>
                                         <button type="button" class="btn btn-danger btn-sm modal-trigger-button" data-bs-toggle="modal" data-bs-target="#popupModalRejectApplication{{ $jobApplication->id }}"><i class="fas fa-times"></i> Reject</button>
@@ -81,18 +136,15 @@
                                                   <label for="message" class="form-label">Message</label>
                                                   <textarea class="form-control" rows="8" name="message"></textarea>
                                                 </div> --}}
-                                            </form>
+                                            {{--</form>
                                         </x-confirmation-modal>
-                                    @endif
+                                    @endif--}}
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td>No applicants found.</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <td>No applicants found.</td>
+                         <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                     @endforelse
                 </tbody>

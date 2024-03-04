@@ -122,7 +122,8 @@
                 
                   
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user fa-fw"></i> Welcome {{ Auth::user()->name }}</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         {{-- <li><a class="dropdown-item" href="#!">Profile</a></li> --}}
                         <li><a class="dropdown-item" href="#!" data-bs-toggle="modal" data-bs-target="#profileModal">Profile</a></li>
@@ -154,6 +155,10 @@
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
+                            <a class="nav-link" href="{{ route('site.landing.page') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
+                                View Posted Jobs to Apply
+                            </a>
                             <a class="nav-link" href="{{ route('jobseeker.appliedJobs') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Applied Jobs
@@ -168,10 +173,10 @@
                             </a>                            
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer">
+                    {{--<div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         {{ Auth::user()->name }} ({{ Auth::user()->account_type }})
-                    </div>
+                    </div>--}}
                 </nav>
             </div>
             <div id="layoutSidenav_content">
@@ -307,7 +312,7 @@
         <script src="{{ asset('/public/locals/all.js') }}"></script>
         <script src="{{ asset('/public/locals/sweetalert2.min.js') }}"></script>
         <script src="{{ asset('/public/locals/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('/public/localsdataTables.bootstrap5.min.js') }}"></script>
+        <script src="{{ asset('/public/locals/dataTables.bootstrap5.min.js') }}"></script>
         <script src="{{ asset('/public/startboostrap/js/scripts.js') }}"></script>
         {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script> --}}
         {{-- <script src="{{ asset('startboostrap/assets/demo/chart-area-demo.js') }}"></script> --}}

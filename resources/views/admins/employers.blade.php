@@ -33,12 +33,15 @@
         </div>
 
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-condensed table-striped data-table">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Actions</th>
+                        <th>Employer Name</th>
+                        <th>Email</th>
+                        <th>Company Name</th>
+                        <th>Company Description</th>
+                        <th>Created At</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,12 +49,10 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $employer->name }}</td>
-                            <td style="text-align: center;">
-                                <div class="btn-group">
-                                    <a href="" class="btn btn-success btn-sm"><i class="fas fa-eye"></i> {{ __('View') }}</a>
-                                    <button type="button" class="btn btn-danger btn-sm deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $employer->id }}" data-name="{{ $employer->name }}"><i class="fas fa-trash"></i> {{ __('Delete') }}</button>
-                                </div>
-                            </td>
+                            <td>{{ $employer->email }}</td>
+                            <td>{{ $employer->employer->company_name }}</td>
+                            <td>{{ $employer->employer->company_description }}</td>
+                            <td>{{ date("m-d-Y", strtotime($employer->created_at)) }}</td>
                         </tr>
                     @empty
                         <tr>
@@ -92,20 +93,14 @@
                 </div>
             </div>
         </div>
-
-
-        <script>
-            // Handle delete button click
-            $('.deleteBtn').on('click', function() {
-                // console.log('dal');
-                var seekerId = $(this).data('id');
-                var employerName = $(this).data('name');
-                $('#deleteForm').attr('action', '/admin/employers/' + seekerId);
-                $('#deletEmployerName').text(employerName);
-            });
-        </script>
-
-
 @endsection
+@push('pages-script')
+<script>
+            $(document).ready(function () {
+                $('.data-table').DataTable();
+                
+            });
+</script>
+@endpush
 
 
