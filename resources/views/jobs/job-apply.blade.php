@@ -56,7 +56,7 @@
                     @csrf
                     <div class="form-group">
                       <label for="">Resume</label>
-                      <input type="file" name="resume" id="resume" class="form-control" aria-describedby="helpId">
+                      <input type="file" name="resume" id="resume" class="form-control" aria-describedby="helpId" required>
                     </div>
                     <div class="form-group">
                 <label for="education">Educational Attainment</label>

@@ -60,7 +60,7 @@
             <div class="p-3">
                 @if($application->status === "pending")
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popupModalRejectApplication">Reject Application</button>
-                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#popupModalAcceptApplication">Accept Application</button> 
+                    {{--<button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#popupModalAcceptApplication">Accept Application</button>--}} 
                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#popupModalScheduleInterviewApplication">Schedule for Interview</button> 
                 @else
                     @if($application->status === "accepted")
