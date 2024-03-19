@@ -62,7 +62,13 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4">{{ __('No jobs found.') }}</td>
+                            <td>{{ __('No jobs found.') }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     @endforelse
                 </tbody>

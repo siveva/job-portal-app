@@ -67,6 +67,7 @@ class JobController extends Controller
                 'deadline' => 'required|date',
                 'education' => 'required',
                 'yrOfexp' => 'required',
+                'eligibility' => 'required',
                 'categories' => 'required|array|min:1', // added categories validation rules
                 'categories.*' => 'exists:categories,id' // added categories validation rules
             ]);
@@ -82,6 +83,7 @@ class JobController extends Controller
             $job->deadline = $validatedData['deadline'];
             $job->education = $validatedData['education'];
             $job->yrOfexp = $validatedData['yrOfexp'];
+            $job->eligibility = $validatedData['eligibility'];
         
             // Get the authenticated employer and associate the job with them
             // $employer = Auth::user()->employer;
@@ -208,49 +210,14 @@ class JobController extends Controller
             $path = $request->file('resume')->store('resumes');
         }
 
-        if($job->education == "10") {
-            if($request->education >= "4" && $job->yrOfexp == "0") {
-                $shortlisted = "yes";
-            }
-            else if($request->education >= "4" && $request->yrOfexp >= $job->yrOfexp) {
-                $shortlisted = "yes";
-            } 
-            else {
-                $shortlisted = "no";
-            }
-        } 
-        else if($job->education == $request->education) {
-            if($job->yrOfexp == "0") {
-                $shortlisted = "yes";
-            }
-            else if($request->yrOfexp >= $job->yrOfexp) {
-                $shortlisted = "yes";
-            }
-            else {
-                $shortlisted = "no";
-            }
+        if($job->eligibility == "0") {
+            $shortlisted = $this->shortlist($job, $request);
         }
-        else if($job->education <= "3" && $request->education >= "3") {
-            if($job->yrOfexp == "0") {
-                $shortlisted = "yes";
-            }
-            else if($request->yrOfexp >= $job->yrOfexp) {
-                $shortlisted = "yes";
-            }
-            else {
-                $shortlisted = "no";
-            }
+        else if($job->eligibility == "2" && ($request->eligibility == "2" || $request->eligibility == "3")){
+            $shortlisted = $this->shortlist($job, $request);
         }
-        else if($job->education <= "3" && $request->education >= $job->education) {
-            if($job->yrOfexp == "0") {
-                $shortlisted = "yes";
-            }
-            else if($request->yrOfexp >= $job->yrOfexp) {
-                $shortlisted = "yes";
-            }
-            else {
-                $shortlisted = "no";
-            }
+        else if($job->eligibility == $request->eligibility) {
+            $shortlisted = $this->shortlist($job, $request);
         }
         else {
             $shortlisted = "no";
@@ -263,9 +230,202 @@ class JobController extends Controller
             'status'    => 'pending',
             'education' => $request->education,
             'yrOfexp' => $request->yrOfexp,
-            'shortlisted' => $shortlisted
+            'shortlisted' => $shortlisted,
+            'eligibility' => $request->eligibility
         ]);
 
         return redirect()->route('jobseeker.appliedJobs')->with('success', 'Application was successfully submitted');
     }
+
+private function shortlist($job, $request)
+{
+    if($job->education == "10") {
+        if($request->education > 10  && $job->yrOfexp == "0"){
+            $shortlisted = "yes";
+        }
+        else if($request->education > 10  && $request->yrOfexp >= $job->yrOfexp){
+            $shortlisted = "yes";
+        }
+        else if($request->education >= "4" && $job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->education >= "4" && $request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        } 
+        else {
+            $shortlisted = "no";
+        }
+    } 
+    else if($job->education == $request->education) {
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education <= "3" && $request->education >= "3") {
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education <= "3" && $request->education >= $job->education) {
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education == "4" && ($request->education == "11" || $request->education == "17" || $request->education == "4")){
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education == "5" && ($request->education == "12" || $request->education == "18" || $request->education == "5")){
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education == "6" && ($request->education == "13" || $request->education == "19" || $request->education == "6")){
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education == "7" && ($request->education == "14" || $request->education == "20" || $request->education == "7")){
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education == "8" && ($request->education == "15" || $request->education == "21" || $request->education == "8")){
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education == "9" && ($request->education == "16" || $request->education == "22" || $request->education == "9")){
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education == "11" && ($request->education == "17" || $request->education == "11")){
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education == "12" && ($request->education == "18" || $request->education == "12")){
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education == "13" && ($request->education == "19" || $request->education == "13")){
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education == "14" && ($request->education == "20" || $request->education == "14")){
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education == "15" && ($request->education == "21" || $request->education == "15")){
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else if($job->education == "16" && ($request->education == "22" || $request->education == "16")){
+        if($job->yrOfexp == "0") {
+            $shortlisted = "yes";
+        }
+        else if($request->yrOfexp >= $job->yrOfexp) {
+            $shortlisted = "yes";
+        }
+        else {
+            $shortlisted = "no";
+        }
+    }
+    else {
+        $shortlisted = "no";
+    }
+
+    return $shortlisted;
+}
+
 }

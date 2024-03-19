@@ -26,21 +26,13 @@ CREATE TABLE IF NOT EXISTS `applications` (
   `education` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `yrOfexp` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `shortlisted` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `eligibility` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table job_db.applications: ~7 rows (approximately)
-INSERT INTO `applications` (`id`, `job_seeker_id`, `job_listing_id`, `cover_letter`, `resume`, `status`, `message`, `education`, `yrOfexp`, `shortlisted`, `created_at`, `updated_at`) VALUES
-	(1, 3, 1, 'dfsdf fsdfsdf fsdfsdfsd fsdfdsfs', 'resumes/7RGhJ5SBXuhc6nCexJMxXbr6q2G43cyoq8jiqLo2.pdf', 'pending', NULL, '0', '0', 'no', '2024-02-27 19:21:00', '2024-02-27 19:21:00'),
-	(2, 4, 1, 'hfhfhgfhg', 'resumes/SyNj1wBWKgGCGRlLo56cXZ0zbXpGRWKdm7YkchUn.docx', 'pending', NULL, '4', '4', 'yes', '2024-02-28 01:53:47', '2024-02-28 01:53:47'),
-	(3, 3, 2, 'dfsdfsd', 'resumes/64TAyttUQpZSx4nZ9tyD1XPT5np9Fz4orBVONiWn.pdf', 'pending', NULL, '0', '0', 'yes', '2024-02-28 17:34:36', '2024-02-28 17:34:36'),
-	(4, 3, 3, 'sfsfasfa', 'resumes/2ViNBOO5TjTmk8LCXnp7Iq9o5NvihqfDUCuiLx0m.pdf', 'pending', NULL, '0', '0', 'no', '2024-02-28 17:36:12', '2024-02-28 17:36:12'),
-	(5, 3, 4, 'dsadasda', 'resumes/7nl54PgOfw2xLfMnNZFVpVvnrHhO8oHiYPMA9pGD.pdf', 'pending', NULL, '6', '0', 'no', '2024-02-28 17:40:23', '2024-02-28 17:40:23'),
-	(6, 4, 4, 'dsadsadasd', 'resumes/3qgTavLHZ3LMesVBDkcYZifyoH1HrbcGMqrg3hs1.pdf', 'pending', NULL, '5', '2', 'yes', '2024-02-28 17:42:25', '2024-02-28 17:42:25'),
-	(7, 5, 2, 'fdss', 'resumes/VAJlfAGSGYxp4IsFKkaJa5Sr1p8nbhD94rHhn82k.docx', 'pending', NULL, '4', '1', 'yes', '2024-03-12 00:36:24', '2024-03-12 00:36:24');
-
+-- Dumping data for table job_db.applications: ~3 rows (approximately)
 -- Dumping structure for table job_db.categories
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -48,14 +40,17 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table job_db.categories: ~4 rows (approximately)
+-- Dumping data for table job_db.categories: ~7 rows (approximately)
 INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-	(1, 'Web Development', '2024-02-27 18:11:15', '2024-02-27 18:11:15'),
-	(2, 'Graphic Designer', '2024-02-27 18:11:22', '2024-02-27 18:11:22'),
-	(3, 'Customer Service', '2024-02-27 18:11:33', '2024-02-27 18:11:33'),
-	(4, 'Software Development', '2024-02-27 18:11:58', '2024-02-27 18:11:58');
+	(1, 'Engineering and Architecture', '2024-03-18 15:03:09', '2024-03-18 16:31:46'),
+	(2, 'Arts, Culture, and Entertainment', '2024-03-18 15:03:28', '2024-03-18 15:03:28'),
+	(3, 'Business, Management, and Administration', '2024-03-18 15:03:45', '2024-03-18 15:03:45'),
+	(4, 'Communications', '2024-03-18 15:04:01', '2024-03-18 15:04:01'),
+	(5, 'Education and Teaching', '2024-03-18 15:04:16', '2024-03-18 15:04:16'),
+	(6, 'Healthcare and Medicine', '2024-03-18 15:04:32', '2024-03-18 15:04:32'),
+	(7, 'Technology and IT', '2024-03-18 15:04:50', '2024-03-18 15:04:50');
 
 -- Dumping structure for table job_db.category_job_listings
 CREATE TABLE IF NOT EXISTS `category_job_listings` (
@@ -65,14 +60,9 @@ CREATE TABLE IF NOT EXISTS `category_job_listings` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table job_db.category_job_listings: ~4 rows (approximately)
-INSERT INTO `category_job_listings` (`id`, `category_id`, `job_listing_id`, `created_at`, `updated_at`) VALUES
-	(1, 1, 1, '2024-02-27 18:13:50', '2024-02-27 18:13:50'),
-	(2, 3, 2, '2024-02-28 17:31:40', '2024-02-28 17:31:40'),
-	(3, 3, 3, '2024-02-28 17:32:20', '2024-02-28 17:32:20'),
-	(4, 3, 4, '2024-02-28 17:39:07', '2024-02-28 17:39:07');
+-- Dumping data for table job_db.category_job_listings: ~2 rows (approximately)
 
 -- Dumping structure for table job_db.employers
 CREATE TABLE IF NOT EXISTS `employers` (
@@ -86,10 +76,7 @@ CREATE TABLE IF NOT EXISTS `employers` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table job_db.employers: ~1 rows (approximately)
-INSERT INTO `employers` (`id`, `user_id`, `company_name`, `company_description`, `company_logo`, `created_at`, `updated_at`) VALUES
-	(1, 2, 'Company 1', 'sdas', NULL, '2024-02-27 18:12:29', '2024-02-27 18:12:29');
-
+-- Dumping data for table job_db.employers: ~0 rows (approximately)
 -- Dumping structure for table job_db.failed_jobs
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -113,23 +100,18 @@ CREATE TABLE IF NOT EXISTS `job_listings` (
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `salary` decimal(8,2) NOT NULL,
-  `job_type` enum('part-time','full-time','freelance','internship','temporary') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_type` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `requirements` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `deadline` datetime NOT NULL,
   `education` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `yrOfexp` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `eligibility` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table job_db.job_listings: ~4 rows (approximately)
-INSERT INTO `job_listings` (`id`, `employer_id`, `title`, `description`, `location`, `salary`, `job_type`, `requirements`, `deadline`, `education`, `yrOfexp`, `created_at`, `updated_at`) VALUES
-	(1, 2, 'Junior Frontend Developer', 'Description here', 'Lianga', 30000.00, 'full-time', 'requirements here', '2024-04-24 00:00:00', '4', '0', '2024-02-27 18:13:50', '2024-02-27 18:13:50'),
-	(2, 2, 'Elem Sample with 0 exp', 'dasda', 'Lianga', 10000.00, 'full-time', 'sadsad', '2024-04-24 00:00:00', '0', '0', '2024-02-28 17:31:40', '2024-02-28 17:31:40'),
-	(3, 2, 'Elem Sample with 2 exp', 'dsada', 'Lianga', 10000.00, 'part-time', 'dasdasda', '2024-03-04 00:00:00', '0', '2', '2024-02-28 17:32:20', '2024-02-28 17:32:20'),
-	(4, 2, 'Arts sample with 0 exp', 'dasd', 'dasda', 21000.00, 'part-time', 'fdsfsdf', '2024-03-04 00:00:00', '5', '0', '2024-02-28 17:39:07', '2024-02-28 17:39:07');
-
+-- Dumping data for table job_db.job_listings: ~0 rows (approximately)
 -- Dumping structure for table job_db.job_seekers
 CREATE TABLE IF NOT EXISTS `job_seekers` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -142,14 +124,9 @@ CREATE TABLE IF NOT EXISTS `job_seekers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table job_db.job_seekers: ~3 rows (approximately)
-INSERT INTO `job_seekers` (`id`, `user_id`, `first_name`, `last_name`, `phone_number`, `address`, `resume`, `created_at`, `updated_at`) VALUES
-	(1, 3, 'Applicant 1', 'One', '09308090834', 'Diatagon, Lianga, Surigao del Sur', 'uploads/resumes/resume_1709086666.pdf', '2024-02-27 18:17:46', '2024-02-27 18:17:46'),
-	(2, 4, 'Aplicant 2', 'Two', '09308090834', 'Diatagon, Lianga, Surigao del Sur', 'uploads/resumes/resume_1709113982.docx', '2024-02-28 01:53:02', '2024-02-28 01:53:02'),
-	(3, 5, 'Applicant 4', 'Four', '09308090834', 'Surigao del Sur', 'uploads/resumes/resume_1710232346.pdf', '2024-03-12 00:32:26', '2024-03-12 00:32:26');
-
+-- Dumping data for table job_db.job_seekers: ~1 rows (approximately)
 -- Dumping structure for table job_db.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -158,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table job_db.migrations: ~10 rows (approximately)
+-- Dumping data for table job_db.migrations: ~0 rows (approximately)
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
 	(2, '2014_10_12_100000_create_password_resets_table', 1),
@@ -209,15 +186,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table job_db.users: ~5 rows (approximately)
+-- Dumping data for table job_db.users: ~4 rows (approximately)
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `account_type`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'admin', 'admin@admin.com', NULL, '$2y$10$ZCi2xbOtq8f320VHZuGKze86wZ27RXtCa5NqKFn96Ulil7cVjSMxO', 'admin', NULL, '2024-02-27 18:10:20', '2024-02-27 18:10:20'),
-	(2, 'Employer 1', 'emp1@emp.com', NULL, '$2y$10$.7Tbkt1yqR9MJy.yrkTf5uyCg26YnIihewBylhFwcRsKDlnD5Yeo.', 'employer', NULL, '2024-02-27 18:12:21', '2024-02-27 18:12:21'),
-	(3, 'Applicant 1', 'jobseeker1@gmail.com', NULL, '$2y$10$ssigeFnFJArxhSBy9NUvFu2CDgvQctzfgcotLsaHPcNgMZL9u0pf6', 'jobseeker', NULL, '2024-02-27 18:16:45', '2024-02-27 18:16:45'),
-	(4, 'Applicant 2', 'jobseeker2@gmail.com', NULL, '$2y$10$DAovAeRWVTDWyiPM.JVnJe0C7J7JBbjwjYFRd0g/qU9Rc14L3PG62', 'jobseeker', NULL, '2024-02-28 01:52:16', '2024-02-28 01:52:16'),
-	(5, 'Aplicant 4', 'jobseeker4@gmail.com', NULL, '$2y$10$hA1GK45MqWdg7lFJiBALcOo3WiqecL6RsSKg4Ovg56YJu/0N5WcmC', 'jobseeker', NULL, '2024-03-12 00:30:51', '2024-03-12 00:30:51');
+	(1, 'Admin', 'admin@admin.com', NULL, '$2y$10$.GOcNHjuTZ.VFj2ka7w9YeU56QvA.rcrIyR4aQEHvktHLbGE1ZSHe', 'admin', NULL, '2024-03-18 15:01:17', '2024-03-18 15:01:17');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

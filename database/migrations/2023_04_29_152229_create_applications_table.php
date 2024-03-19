@@ -24,6 +24,7 @@ class CreateApplicationsTable extends Migration
             $table->text('education');
             $table->text('yrOfexp');
             $table->text('shortlisted');
+            $table->text('eligibility');
             $table->timestamps();
         });
     }

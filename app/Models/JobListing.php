@@ -19,7 +19,8 @@ class JobListing extends Model
         'requirements',
         'deadline',
         'education',
-        'yrOfexp'
+        'yrOfexp',
+        'eligibility'
     ];
 
     protected $casts = [

@@ -116,6 +116,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::get('/categories', [JobListingController::class])->name('admin.categories.index');
     Route::put('/user/update/{id}', [AdminController::class, 'updateProfile'])->name('user.admin.update');
     Route::put('/user/pass/update/{id}', [AdminController::class, 'changePassword'])->name('user.admin.changePassword');
+   // Route::get('admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
+   // Route::put('admin/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
 
     // routing for categories
     Route::resource('categories', CategoryController::class)->names([

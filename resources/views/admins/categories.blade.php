@@ -40,7 +40,7 @@
                         <th>Name</th>
                         {{-- <th>Created At</th> --}}
                         {{-- <th>Updated At</th> --}}
-                        <th>Actions</th>
+                        {{--<th>Actions</th>--}}
                     </tr>
                 </thead>
                 <tbody>
@@ -50,12 +50,12 @@
                             <td>{{ $category->name }}</td>
                             {{-- <td>{{ $category->created_at->format('Y-m-d') }}</td> --}}
                             {{-- <td>{{ $category->updated_at->format('Y-m-d') }}</td> --}}
-                            <td style="text-align: center;">
+                            {{--<td style="text-align: center;">
                                 <div class="btn-group">
-                                    <a href="" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> {{ __('Edit') }}</a>
+                                    <a href="" class="btn btn-primary btn-smeditBtn" data-bs-toggle="modal" data-bs-target="#editCategoryModal" data-id="{{ $category->id }}" data-name="{{ $category->name }}"><i class="fas fa-edit"></i> {{ __('Edit') }}</a>
                                     <button type="button" class="btn btn-danger btn-sm deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $category->id }}" data-name="{{ $category->name }}"><i class="fas fa-trash"></i> {{ __('Delete') }}</button>
                                 </div>
-                            </td>
+                            </td>--}}
                         </tr>
                     @empty
                         <tr>
@@ -121,6 +121,31 @@
             </div>
         </div>
 
+       {{-- <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCategoryForm" action="{{ route('admin.categories.update', ['category' => $category->id]) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <label for="editCategoryName">Category Name</label>
+                        <input type="text" name="name" id="editCategoryName" class="form-control" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>--}}
+
 
         <script>
             // Handle delete button click
@@ -130,6 +155,14 @@
                 $('#deleteForm').attr('action', '/admin/categories/' + categoryId);
                 $('#deleteCategoryName').text(categoryName);
             });
+
+            /*$('.editBtn').on('click', function() {
+        var categoryId = $(this).data('id');
+        var categoryName = $(this).data('name');
+        $('#editCategoryForm').attr('action', '/admin/categories/' + categoryId);
+        $('#editCategoryName').val(categoryName);
+        $('#editCategoryModal').modal('show');
+    });*/
 
         </script>
 

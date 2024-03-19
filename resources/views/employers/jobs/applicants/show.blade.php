@@ -167,7 +167,43 @@
                                         @break
                                     @case('9')
                                         @php $education = "Graduate of any Education related course"; @endphp
-                                        @break                    
+                                        @break
+                                    @case('11')
+                                        @php $education = "Masters of any Technology and Computer Science Degrees"; @endphp
+                                        @break
+                                    @case('12')
+                                        @php $education = "Masters of any Creative Arts Degrees"; @endphp
+                                        @break
+                                    @case('13')
+                                        @php $education = "Masters of any Engineering and Technology Management Degrees"; @endphp
+                                        @break
+                                    @case('14')
+                                        @php $education = "Masters of any Business Management Degrees"; @endphp
+                                        @break
+                                    @case('15')
+                                        @php $education = "Masters of any Healthcare Degrees"; @endphp
+                                        @break
+                                    @case('16')
+                                        @php $education = "Masters of any Education Degrees"; @endphp
+                                        @break
+                                    @case('17')
+                                        @php $education = "Doctorates in any Computer or IT related Degrees"; @endphp
+                                        @break
+                                    @case('18')
+                                        @php $education = "Doctorates in any Arts or Sciences related Degrees"; @endphp
+                                        @break
+                                    @case('19')
+                                        @php $education = "Doctorates in any Engineering related Degrees"; @endphp
+                                        @break
+                                    @case('20')
+                                        @php $education = "Doctorates in any Business related Degrees"; @endphp
+                                        @break
+                                    @case('21')
+                                        @php $education = "Doctorates in any Medicine related Degrees"; @endphp
+                                        @break
+                                    @case('22')
+                                        @php $education = "Doctorates in any Education related Degrees"; @endphp
+                                        @break                            
                                 @endswitch
                                 @switch($application->yrOfexp)
                                     @case('0')
@@ -186,6 +222,20 @@
                                         @php $exp = "2 yrs and above"; @endphp
                                         @break    
                                 @endswitch
+                                @switch($application->eligibility)
+                                    @case('0')
+                                        @php $el = "None"; @endphp
+                                        @break
+                                    @case('1')
+                                        @php $el = "CS Sub-professional"; @endphp
+                                        @break
+                                    @case('2')
+                                        @php $el = "CS Professional"; @endphp
+                                        @break
+                                    @case('3')
+                                        @php $el = "Licensed Professional"; @endphp
+                                        @break  
+                                @endswitch
                 <div class="row mt-2">
                     <label><b>Educational Attainment</b></label>
                     <p>* {{ $education }}</p>
@@ -193,6 +243,10 @@
                 <div class="row mt-2">
                     <label><b>Range of Relevant Experience</b></label>
                     <p>* {{ $exp }}</p>
+                </div>
+                <div class="row mt-2">
+                    <label><b>Eligibility</b></label>
+                    <p>* {{ $el }}</p>
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-12">

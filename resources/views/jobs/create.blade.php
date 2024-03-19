@@ -22,6 +22,44 @@
             @csrf
 
             <div class="form-group row mb-3">
+                <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
+            
+                <div class="col-md-6">
+                    <select id="category" class="form-control @error('categories') is-invalid @enderror" name="categories[]" multiple required>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('categories')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                <label for="job_type" class="col-md-4 col-form-label text-md-right">{{ __('Job Type') }}</label>
+
+                <div class="col-md-6">
+                    <select id="job_type" class="form-control @error('job_type') is-invalid @enderror" name="job_type" required autocomplete="job_type">
+                        <option value="part-time">Part-time</option>
+                        <option value="full-time">Full-time</option>
+                        <option value="freelance">Freelance</option>
+                        <option value="internship">Internship</option>
+                        <option value="temporary">Temporary</option>
+                        <option value="job order">Job Order</option>
+                        <option value="contract of service">Contract of Service</option>
+                    </select>
+                    @error('job_type')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
                 <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
 
                 <div class="col-md-6">
@@ -42,52 +80,6 @@
                     <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" required autocomplete="description">{{ old('description') }}</textarea>
 
                     @error('description')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="form-group row mb-3">
-                <label for="education" class="col-md-4 col-form-label text-md-right">{{ __('Education') }}</label>
-            
-                <div class="col-md-6">
-                    <select id="education" class="form-control @error('education') is-invalid @enderror" name="education" required>
-                        <option></option>
-                        <option value="0">Elementary level or graduate</option>
-                        <option value="1">Secondary level or graduate</option>
-                        <option value="2">Vocational Course Graduate</option>
-                        <option value="3">College level</option>
-                        <option value="10">Any Bachelors degree holder</option>
-                        <option value="4">Graduate of any IT related course</option>
-                        <option value="5">Graduate of any Arts or Sciences related course</option>
-                        <option value="6">Graduate of any Engineering related course</option>
-                        <option value="7">Graduate of any Business related course</option>
-                        <option value="8">Graduate of any Medicine related course</option>
-                        <option value="9">Graduate of any Education related course</option>
-                    </select>
-                    @error('education')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="form-group row mb-3">
-                <label for="yrOfexp" class="col-md-4 col-form-label text-md-right">{{ __('Yrs of relevant experience') }}</label>
-
-                <div class="col-md-6">
-                    <select id="yrOfexp" class="form-control @error('yrOfexp') is-invalid @enderror" name="yrOfexp" required autocomplete="job_type">
-                        <option></option>
-                        <option value="0">None required</option>
-                        <option value="1">1-6 mos</option>
-                        <option value="2">7-12 mos</option>
-                        <option value="3">1-2 yrs</option>
-                        <option value="4">2 yrs and above</option>
-                    </select>
-                    @error('yrOfexp')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -124,17 +116,36 @@
             </div>
 
             <div class="form-group row mb-3">
-                <label for="job_type" class="col-md-4 col-form-label text-md-right">{{ __('Job Type') }}</label>
-
+                <label for="education" class="col-md-4 col-form-label text-md-right">{{ __('Education') }}</label>
+            
                 <div class="col-md-6">
-                    <select id="job_type" class="form-control @error('job_type') is-invalid @enderror" name="job_type" required autocomplete="job_type">
-                        <option value="part-time">Part-time</option>
-                        <option value="full-time">Full-time</option>
-                        <option value="freelance">Freelance</option>
-                        <option value="internship">Internship</option>
-                        <option value="temporary">Temporary</option>
+                    <select id="education" class="form-control @error('education') is-invalid @enderror" name="education" required>
+                        <option></option>
+                        <option value="0">Elementary level or graduate</option>
+                        <option value="1">Secondary level or graduate</option>
+                        <option value="2">Vocational Course Graduate</option>
+                        <option value="3">College level</option>
+                        <option value="10">Any Bachelors degree holder</option>
+                        <option value="4">Graduate of any Computer or IT related course</option>
+                        <option value="5">Graduate of any Arts or Sciences related course</option>
+                        <option value="6">Graduate of any Engineering related course</option>
+                        <option value="7">Graduate of any Business related course</option>
+                        <option value="8">Graduate of any Medicine related course</option>
+                        <option value="9">Graduate of any Education related course</option>
+                        <option value="11">Masters of any Technology and Computer Science Degrees</option>
+                        <option value="12">Masters of any Creative Arts Degrees</option>
+                        <option value="13">Masters of any Engineering and Technology Management Degrees</option>
+                        <option value="14">Masters of any Business Management Degrees</option>
+                        <option value="15">Masters of any Healthcare Degrees</option>
+                        <option value="16">Masters of any Education Degrees</option>
+                        <option value="17">Doctorates in any Computer or IT related Degrees</option>
+                        <option value="18">Doctorates in any Arts or Sciences related Degrees</option>
+                        <option value="19">Doctorates in any Engineering related Degrees</option>
+                        <option value="20">Doctorates in any Business related Degrees</option>
+                        <option value="21">Doctorates in any Medicine related Degrees</option>
+                        <option value="22">Doctorates in any Education related Degrees</option>
                     </select>
-                    @error('job_type')
+                    @error('education')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -142,17 +153,38 @@
                 </div>
             </div>
 
+            <div class="form-group row mb-3">
+                <label for="yrOfexp" class="col-md-4 col-form-label text-md-right">{{ __('Yrs of relevant experience') }}</label>
+
+                <div class="col-md-6">
+                    <select id="yrOfexp" class="form-control @error('yrOfexp') is-invalid @enderror" name="yrOfexp" required autocomplete="job_type">
+                        <option></option>
+                        <option value="0">None required</option>
+                        <option value="1">1-6 mos</option>
+                        <option value="2">7-12 mos</option>
+                        <option value="3">1-2 yrs</option>
+                        <option value="4">2 yrs and above</option>
+                    </select>
+                    @error('yrOfexp')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
 
             <div class="form-group row mb-3">
-                <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
-            
+                <label for="yrOfexp" class="col-md-4 col-form-label text-md-right">{{ __('Eligibility') }}</label>
+
                 <div class="col-md-6">
-                    <select id="category" class="form-control @error('categories') is-invalid @enderror" name="categories[]" multiple required>
-                        @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
+                    <select id="eligibility" class="form-control @error('eligibility') is-invalid @enderror" name="eligibility" required autocomplete="job_type">
+                        <option></option>
+                        <option value="0">None required</option>
+                        <option value="1">CS Sub-professional</option>
+                        <option value="2">CS Professional</option>
+                        <option value="3">Licensed Professional</option>
                     </select>
-                    @error('categories')
+                    @error('eligibility')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

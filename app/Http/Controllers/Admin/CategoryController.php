@@ -71,7 +71,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        //return view('admins.edit_category', compact('category'));
     }
 
     /**
@@ -83,7 +83,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+       /* $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+        ]);
+    
+        // Update the category
+        $category->update([
+            'name' => $request->name,
+        ]);
+    
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
+   */
     }
 
     /**
